@@ -1,0 +1,125 @@
+@import "./variables.scss";
+@import "./mixins.scss";
+
+@font-face {
+    font-family: 'Inika';
+    src: url('../fuentes/Inika-Regular.ttf') format('ttf');
+}
+
+*{
+    font-family: 'Inika';
+    @include limpiar_margenes();
+}
+
+body{
+    background-color: $color_fondo;
+}
+
+header{
+    height: 50px;
+    @include flex_row();
+    justify-content: space-between;
+    margin: 0;
+    padding: 20px;
+    background-color: $color_primario;
+    color: $letra_primario;
+    margin-bottom: $margen_inferior;
+    
+    a{
+        text-decoration: none;
+        color: $letra_primario;
+        font-size: $tamaño_letra_menu;
+        #portugal{
+            width: 40px;
+            height: 30px;
+            margin-left: 50px;
+            margin-right: 30px;
+            margin-top: 25px;
+        }
+    }
+    a:hover{
+        color: $color_barra;
+    }
+    #logo{
+        position: absolute;
+        top: 2%; 
+        border-radius: 100px;
+        width: 150px;
+        border: 7px solid $color_primario;
+    }
+    #logo:hover{
+        transform: scale(1.1);
+        transition: transform 0.8s ease-in;
+    }
+}
+
+section{
+    @include flex_row();
+    @include limpiar_margenes();
+    justify-content: center;
+    img{
+        border-radius: 22px;
+        margin: 10px;
+        width: 600px;
+        height: 550px;
+        border: 7px solid $color_primario;
+    }
+    img:hover{
+        transform: scale(1.05);
+        transition: transform 1s ease-in;
+    }
+    .txt{
+        color: $letra_secundario;
+        margin-top: 5%;
+        display: flex;
+        flex-direction: column;
+        width: 45%;
+        padding: 2%;
+        font-size: $tamaño_letra_contenido;
+        text-align: justify;
+        #datos{
+            padding: 5%;
+            .contacto{
+                @include flex_row();
+                margin-bottom: 10px;
+                gap: 10px;
+                i{
+                    font-size: 50px;
+                }
+            }
+        }
+    }
+}
+
+ul {
+    list-style: none;
+    @include flex_row();
+    justify-content: center;
+    margin-left: 10%;
+    position: relative;
+    li {
+        text-align: center;
+        margin-top: 20px;
+        margin-right: 120px;
+        margin-bottom: 10px;
+    }
+    #seleccionado1 {
+        position: absolute;
+        bottom: -13px;
+        right: 90px;
+        width: 190px;
+        height: 10px;
+        background-color: $color_barra;
+    }
+}
+
+footer {
+    background-color: $color_primario;
+    color: $letra_primario;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-size: large;
+}

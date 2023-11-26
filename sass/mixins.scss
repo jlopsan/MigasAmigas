@@ -1,0 +1,19 @@
+@mixin limpiar_margenes() {
+    margin: 0;
+    padding: 0;
+}
+@mixin grid($columnas, $filas){
+    display: grid;
+    grid-template-columns: repeat($columnas, 1fr);
+    grid-template-rows:  repeat($filas, auto);
+}
+@mixin flex_row(){
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+@mixin flex_column(){
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

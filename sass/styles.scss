@@ -1,0 +1,113 @@
+@import "./variables.scss";
+@import "./mixins.scss";
+
+@font-face {
+    font-family: 'Inika';
+    src: url('../fuentes/Inika-Regular.ttf') format('ttf');
+}
+
+*{
+    font-family: 'Inika';
+    @include limpiar_margenes();
+}
+
+body{
+    background-image: url(patron.png);
+    background-color: $color_fondo;
+}
+
+header{
+    height: 50px;
+    @include flex_row();
+    justify-content: space-between;
+    margin: 0;
+    padding: 20px;
+    background-color: $color_primario;
+    color: $letra_primario;
+    margin-bottom: $margen_inferior;
+    
+    a{
+        text-decoration: none;
+        color: $letra_primario;
+        font-size: $tamaño_letra_menu;
+        #portugal{
+            width: 40px;
+            height: 30px;
+            margin-left: 50px;
+            margin-right: 30px;
+            margin-top: 25px;
+        }
+    }
+    a:hover{
+        color: $color_barra;
+    }
+    #logo{
+        position: absolute;
+        top: 2%; 
+        border-radius: 100px;
+        width: 150px;
+        border: 7px solid $color_primario;
+    }
+    #logo:hover{
+        transform: scale(1.1);
+        transition: transform 0.8s ease-in;
+    }
+}
+
+section{
+    @include flex_row();
+    justify-content: center;
+    @include limpiar_margenes();
+    video{
+        border-radius: 22px;
+        margin: 10px;
+    }
+    .txt{
+        color: $letra_secundario;
+        margin-top: 5%;
+        @include flex_column();
+        width: 25%;
+        padding: 2%;
+        font-size: $tamaño_letra_contenido;
+        text-align: justify;
+        a{
+            margin: 8%;
+            margin-top: 5%;
+            font-size: 140%;
+            padding: 3%;
+            border-radius: 10px;
+            color: $letra_primario;
+            background-color: $color_primario;
+            border: 0;
+            text-decoration: none;
+            text-align: center;
+        }
+        a:hover{
+            transform: scale(0.95);
+            box-shadow: 3px 3px 1px rgb(106, 106, 106);
+            transition: all 0.5s ease-in;
+        }
+    }
+}
+
+ul{
+    list-style: none;
+    @include flex_row();
+    margin-left: 10%;
+    justify-content: space-between;
+    li{
+        margin-top: 20px;
+        margin-right: 120px;
+    }
+}
+
+footer {
+    background-color: $color_primario;
+    color: $letra_primario;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-size: large;
+}
