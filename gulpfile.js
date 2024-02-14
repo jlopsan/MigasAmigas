@@ -1,40 +1,44 @@
-let gulp = require('gulp');
-let clean = require('gulp-clean');
-let sass = require('gulp-sass')(require('sass'));
-let git = require('simple-git');
-let cleanCSS = require('gulp-clean-css');
+const { src, dest, series } = require('gulp');
+const clean = require('gulp-clean');
+const sass = require('gulp-sass')(require('sass'));
+const git = require('simple-git');
+const cleanCSS = require('gulp-clean-css');
 
-gulp.task('limpiarEstilos', function() {
-  return gulp.src('./styles/*', { read: false, allowEmpty: false })
+function limpiarEstilos(cb) {
+  return src('./styles/*', { read: false, allowEmpty: false })
     .pipe(clean());
-});
+}
 
-gulp.task('compilarSass', function() {
-    let archivosSCSS = ['./sass/styles.scss', './sass/styles2.scss', './sass/stylesProductos.scss'];
-    return gulp.src(archivosSCSS)
-      .pipe(sass())
-      .pipe(gulp.dest('styles'));
-  });
+function compilarSass(cb) {
+  const archivosSCSS = ['./sass/styles.scss', './sass/styles2.scss', './sass/stylesProductos.scss'];
+  return src(archivosSCSS)
+    .pipe(sass())
+    .pipe(dest('styles'));
+}
 
-gulp.task('comprimirCSS', function() {
-  let archivosCSS = ['./styles/styles.css', './styles/styles2.css', './styles/stylesProductos.css'];
-  return gulp.src(archivosCSS)
+function comprimirCSS(cb) {
+  const archivosCSS = ['./styles/styles.css', './styles/styles2.css', './styles/stylesProductos.css'];
+  return src(archivosCSS)
     .pipe(cleanCSS())
-    .pipe(gulp.dest('styles'));
-});
+    .pipe(dest('styles'));
+}
 
-gulp.task('subirGitHub', function (done) {
-    git()
-        .add('.')
-        .commit('Subida Proyecto Migas Amigas')
-        .push('origin', 'main', function (err) {
-            if (err) {
-                console.error(err);
-                done(err);
-            } else {
-                done();
-            }
-        });
-});
+function subirGitHub(cb) {
+  git()
+    .add('.')
+    .commit('Subida Proyecto Migas Amigas')
+    .push('origin', 'main', function (err) {
+      if (err) {
+        console.error(err);
+        cb(err);
+      } else {
+        cb();
+      }
+    });
+}
 
-gulp.task('default', gulp.series('limpiarEstilos', 'compilarSass', 'comprimirCSS', 'subirGitHub'));
+exports.limpiarEstilos = limpiarEstilos;
+exports.compilarSass = compilarSass;
+exports.comprimirCSS = comprimirCSS;
+exports.subirGitHub = subirGitHub;
+exports.default = series(limpiarEstilos, compilarSass, comprimirCSS, subirGitHub);
